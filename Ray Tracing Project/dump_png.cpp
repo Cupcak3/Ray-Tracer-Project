@@ -1,7 +1,6 @@
 //#include <png.h>
 #include </Library/Frameworks/libpng15.framework/Headers/png.h>
 #include <cassert>
-#include <iostream>
 typedef unsigned int Pixel;
 
 void Dump_png(Pixel* data,int width,int height,const char* filename)
@@ -26,7 +25,6 @@ void Dump_png(Pixel* data,int width,int height,const char* filename)
     delete[] row_pointers;
     png_destroy_write_struct(&png_ptr,&info_ptr);
     fclose(file);
-	std::cout<<"Wrote png: "<<&file<<std::endl;
 }
 
 void Read_png(Pixel*& data,int& width,int& height,const char* filename)
