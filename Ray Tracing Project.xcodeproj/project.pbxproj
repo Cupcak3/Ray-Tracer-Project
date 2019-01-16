@@ -39,6 +39,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		703C626D21EE85E600C09840 /* output.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = output.png; sourceTree = "<group>"; };
+		703C626E21EEA7B600C09840 /* diff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diff.png; sourceTree = "<group>"; };
 		70B6B4EA21ED836200625A0C /* Ray Tracing Project */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Ray Tracing Project"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B6B4F421ED83A000625A0C /* 10.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10.txt; sourceTree = "<group>"; };
 		70B6B4F521ED83A000625A0C /* 04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 04.png; sourceTree = "<group>"; };
@@ -254,6 +256,8 @@
 				70B6B4F621ED83A000625A0C /* 27.png */,
 				70B6B55521ED83AA00625A0C /* 28.png */,
 				70B6B53821ED83A600625A0C /* 29.png */,
+				703C626D21EE85E600C09840 /* output.png */,
+				703C626E21EEA7B600C09840 /* diff.png */,
 				70B6B4FE21ED83A000625A0C /* grading-script.py */,
 				70B6B55621ED83AB00625A0C /* 00.txt */,
 				70B6B53D21ED83A700625A0C /* 01.txt */,
@@ -491,11 +495,18 @@
 		70B6B4F221ED836200625A0C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_OBJC_UNUSED_IVARS = NO;
+				CLANG_WARN_CONSTANT_CONVERSION = NO;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = NO;
 				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_UNUSED_VALUE = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -503,11 +514,18 @@
 		70B6B4F321ED836200625A0C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_OBJC_UNUSED_IVARS = NO;
+				CLANG_WARN_CONSTANT_CONVERSION = NO;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = NO;
 				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_UNUSED_VALUE = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

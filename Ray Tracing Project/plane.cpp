@@ -8,22 +8,16 @@
 // to record a hit with t=0 as the first entry in hits.
 Hit Plane::Intersection(const Ray& ray, int part) const
 {
-	/*
-	 bool intersectPlane(const Vec3f &n, const Vec3f &p0, const Vec3f &l0, const Vec3f &l, float &t)
-	 {
-	 // assuming vectors are all normalized
-	 float denom = dotProduct(n, l);
-	 if (denom > 1e-6) {
-	 Vec3f p0l0 = p0 - l0;
-	 t = dotProduct(p0l0, n) / denom;
-	 return (t >= 0);
-	 }
-	 
-	 return false;
-	 }
-	 */
+	//TODO;
+	float denominator = dot(this->normal, ray.direction);
+	if (abs(denominator)>small_t)
+	{
+		float t = dot(this->x1-ray.endpoint, this->normal) / denominator;
+		if (t >= 0) {
+			return {this, t, -1}; //-1 MAY HAVE TO CHANGE LATER
+		}
+	}
 	
-
     return {0,0,0};
 }
 

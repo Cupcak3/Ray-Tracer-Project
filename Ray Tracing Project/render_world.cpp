@@ -22,15 +22,16 @@ Render_World::~Render_World()
 // to ensure that hit.dist>=small_t.
 Hit Render_World::Closest_Intersection(const Ray& ray)
 {
+	// TODO; I'm going to leave these in and commented so that I can easily tell which functions I edit
 	float min_t = std::numeric_limits<float>::max();
-	Hit closest_hit;
-	closest_hit.object = NULL;
+	Hit closest_hit = {NULL,0,0}; // I think this is what object.h is requiring. Initialized null so that only intersections are recorded
 	for (Object* object: objects)
 	{
-		Hit hit = object->Intersection(ray, -1);
-		if (hit.dist < min_t && hit.dist >= small_t)
+		Hit hit = object->Intersection(ray, -1);  // Not sure what the part attribute/argument is for yet but I assume -1 is ok for now as per documentation. Probably changes later
+		if (hit.dist < min_t && hit.dist >= small_t && hit.object != NULL)
 		{
-			closest_hit = hit;
+			min_t = hit.dist;  // Update min_t. Ensures closest object to camera is registered.
+			closest_hit = hit; // Register the new closest object intersection
 		}
 	}
     return closest_hit;
@@ -40,9 +41,10 @@ Hit Render_World::Closest_Intersection(const Ray& ray)
 void Render_World::Render_Pixel(const ivec2& pixel_index)
 {
 	// set up the initial view ray here
+	// TODO;
     Ray ray;
 	ray.endpoint = camera.position;
-	ray.direction = (camera.World_Position(pixel_index)-ray.endpoint).normalized();
+	ray.direction = (camera.World_Position(pixel_index)-ray.endpoint).normalized(); // Normalize view ray from endpoint --> pixel point
     vec3 color=Cast_Ray(ray,1);
     camera.Set_Pixel(pixel_index,Pixel_Color(color));
 }
@@ -63,10 +65,11 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
 {
     vec3 color;
 	// determine the color here;
-	Hit closest_hit = Closest_Intersection(ray);
-	if (closest_hit.object != NULL)
+	//TODO;
+	Hit hit = Closest_Intersection(ray);
+	if (hit.object)
 	{
-		//color = Flat_Shader::Shade_Surface(ray, ray.Point(closest_hit.dist), (ray.Point(closest_hit.dist)-ray.endpoint).normalized(), recursion_depth);
+		color = hit.object->material_shader->Shade_Surface(ray, ray.Point(hit.dist), hit.object->Normal(ray.Point(hit.dist), -1), recursion_depth);
 	}
 	else
 	{
@@ -77,7 +80,8 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
 
 void Render_World::Initialize_Hierarchy()
 {
-    TODO; // Fill in hierarchy.entries; there should be one entry for
+    TODO;
+	// Fill in hierarchy.entries; there should be one entry for
     // each part of each object.
 
     hierarchy.Reorder_Entries();
