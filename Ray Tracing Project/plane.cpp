@@ -9,16 +9,21 @@
 Hit Plane::Intersection(const Ray& ray, int part) const
 {
 	//TODO;
-	float denominator = dot(this->normal, ray.direction);
-	if (abs(denominator)>small_t)
+	// ((E-Q) + tU)*N=0
+	// (E-Q)N + t*U*N=0
+	// t*U*N = -((E-Q)N)
+	// t = ((Q-E)*N) ÷ (U*N)
+	float denominator = dot(ray.direction, this->normal);
+	if (denominator != 0)
 	{
 		float t = dot(this->x1-ray.endpoint, this->normal) / denominator;
-		if (t >= 0) {
-			return {this, t, -1}; //-1 MAY HAVE TO CHANGE LATER
+		if (t > small_t) {
+		return {this, t, -1}; //-1 MAY HAVE TO CHANGE LATER
 		}
 	}
+
 	
-    return {0,0,0};
+    return {0,0,0}; // No intersection
 }
 
 vec3 Plane::Normal(const vec3& point, int part) const

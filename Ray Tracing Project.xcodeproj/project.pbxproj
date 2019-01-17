@@ -166,66 +166,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		70B6B4E121ED836200625A0C = {
+		703C627221EECBA400C09840 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				70D9FEE521EDE0DB0095ACBC /* Build */,
-				70B6B4EC21ED836200625A0C /* Ray Tracing Project */,
-				70B6B4EB21ED836200625A0C /* Products */,
-				70D9FEDC21EDB8D50095ACBC /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		70B6B4EB21ED836200625A0C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				70B6B4EA21ED836200625A0C /* Ray Tracing Project */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		70B6B4EC21ED836200625A0C /* Ray Tracing Project */ = {
-			isa = PBXGroup;
-			children = (
-				70B6B52C21ED83A500625A0C /* SConstruct */,
-				70B6B54121ED83A800625A0C /* box.cpp */,
-				70B6B51721ED83A300625A0C /* camera.cpp */,
-				70B6B50B21ED83A100625A0C /* dump_png.cpp */,
-				70B6B50321ED83A100625A0C /* flat_shader.cpp */,
-				70B6B52021ED83A400625A0C /* hierarchy.cpp */,
-				70B6B54821ED83A800625A0C /* main.cpp */,
-				70B6B54521ED83A800625A0C /* mesh.cpp */,
-				70B6B53321ED83A600625A0C /* parse.cpp */,
-				70B6B54E21ED83A900625A0C /* phong_shader.cpp */,
-				70B6B53F21ED83A700625A0C /* plane.cpp */,
-				70B6B51B21ED83A300625A0C /* reflective_shader.cpp */,
-				70B6B50E21ED83A200625A0C /* render_world.cpp */,
-				70B6B51921ED83A300625A0C /* sphere.cpp */,
-				70B6B51521ED83A200625A0C /* bounding_box.h */,
-				70B6B55421ED83AA00625A0C /* box.h */,
-				70B6B50D21ED83A200625A0C /* camera.h */,
-				70B6B50F21ED83A200625A0C /* direction_light.h */,
-				70B6B4FF21ED83A000625A0C /* flat_shader.h */,
-				70B6B55821ED83AB00625A0C /* hierarchy.h */,
-				70B6B51121ED83A200625A0C /* light.h */,
-				70B6B4FA21ED83A000625A0C /* mesh.h */,
-				70B6B4FB21ED83A000625A0C /* misc.h */,
-				70B6B55721ED83AB00625A0C /* object.h */,
-				70B6B4F921ED83A000625A0C /* phong_shader.h */,
-				70B6B50121ED83A100625A0C /* plane.h */,
-				70B6B52321ED83A400625A0C /* point_light.h */,
-				70B6B53621ED83A600625A0C /* ray.h */,
-				70B6B51A21ED83A300625A0C /* reflective_shader.h */,
-				70B6B53221ED83A600625A0C /* render_world.h */,
-				70B6B50C21ED83A200625A0C /* shader.h */,
-				70B6B51C21ED83A300625A0C /* sphere.h */,
-				70B6B51E21ED83A300625A0C /* spot_light.h */,
-				70B6B53421ED83A600625A0C /* vec.h */,
-				70B6B53C21ED83A700625A0C /* bunny.obj */,
-				70B6B50221ED83A100625A0C /* cow.obj */,
-				70B6B4FD21ED83A000625A0C /* hedron.obj */,
-				70B6B51321ED83A200625A0C /* sphere.obj */,
-				70B6B55321ED83AA00625A0C /* tri.obj */,
 				70B6B53021ED83A500625A0C /* 00.png */,
 				70B6B52F21ED83A500625A0C /* 01.png */,
 				70B6B51621ED83A200625A0C /* 02.png */,
@@ -256,9 +199,13 @@
 				70B6B4F621ED83A000625A0C /* 27.png */,
 				70B6B55521ED83AA00625A0C /* 28.png */,
 				70B6B53821ED83A600625A0C /* 29.png */,
-				703C626D21EE85E600C09840 /* output.png */,
-				703C626E21EEA7B600C09840 /* diff.png */,
-				70B6B4FE21ED83A000625A0C /* grading-script.py */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		703C627321EECBCF00C09840 /* Inputs */ = {
+			isa = PBXGroup;
+			children = (
 				70B6B55621ED83AB00625A0C /* 00.txt */,
 				70B6B53D21ED83A700625A0C /* 01.txt */,
 				70B6B54421ED83A800625A0C /* 02.txt */,
@@ -289,6 +236,99 @@
 				70B6B55021ED83AA00625A0C /* 27.txt */,
 				70B6B4F821ED83A000625A0C /* 28.txt */,
 				70B6B51D21ED83A300625A0C /* 29.txt */,
+			);
+			name = Inputs;
+			sourceTree = "<group>";
+		};
+		703C627421EECC1400C09840 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				70B6B54121ED83A800625A0C /* box.cpp */,
+				70B6B51721ED83A300625A0C /* camera.cpp */,
+				70B6B50B21ED83A100625A0C /* dump_png.cpp */,
+				70B6B50321ED83A100625A0C /* flat_shader.cpp */,
+				70B6B52021ED83A400625A0C /* hierarchy.cpp */,
+				70B6B54821ED83A800625A0C /* main.cpp */,
+				70B6B54521ED83A800625A0C /* mesh.cpp */,
+				70B6B53321ED83A600625A0C /* parse.cpp */,
+				70B6B54E21ED83A900625A0C /* phong_shader.cpp */,
+				70B6B53F21ED83A700625A0C /* plane.cpp */,
+				70B6B51B21ED83A300625A0C /* reflective_shader.cpp */,
+				70B6B50E21ED83A200625A0C /* render_world.cpp */,
+				70B6B51921ED83A300625A0C /* sphere.cpp */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		703C627521EECC1C00C09840 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				70B6B51521ED83A200625A0C /* bounding_box.h */,
+				70B6B55421ED83AA00625A0C /* box.h */,
+				70B6B50D21ED83A200625A0C /* camera.h */,
+				70B6B50F21ED83A200625A0C /* direction_light.h */,
+				70B6B4FF21ED83A000625A0C /* flat_shader.h */,
+				70B6B55821ED83AB00625A0C /* hierarchy.h */,
+				70B6B51121ED83A200625A0C /* light.h */,
+				70B6B4FA21ED83A000625A0C /* mesh.h */,
+				70B6B4FB21ED83A000625A0C /* misc.h */,
+				70B6B55721ED83AB00625A0C /* object.h */,
+				70B6B4F921ED83A000625A0C /* phong_shader.h */,
+				70B6B50121ED83A100625A0C /* plane.h */,
+				70B6B52321ED83A400625A0C /* point_light.h */,
+				70B6B53621ED83A600625A0C /* ray.h */,
+				70B6B51A21ED83A300625A0C /* reflective_shader.h */,
+				70B6B53221ED83A600625A0C /* render_world.h */,
+				70B6B50C21ED83A200625A0C /* shader.h */,
+				70B6B51C21ED83A300625A0C /* sphere.h */,
+				70B6B51E21ED83A300625A0C /* spot_light.h */,
+				70B6B53421ED83A600625A0C /* vec.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		703C627621EECC3200C09840 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				70B6B53C21ED83A700625A0C /* bunny.obj */,
+				70B6B50221ED83A100625A0C /* cow.obj */,
+				70B6B4FD21ED83A000625A0C /* hedron.obj */,
+				70B6B51321ED83A200625A0C /* sphere.obj */,
+				70B6B55321ED83AA00625A0C /* tri.obj */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
+		70B6B4E121ED836200625A0C = {
+			isa = PBXGroup;
+			children = (
+				70D9FEE521EDE0DB0095ACBC /* Build */,
+				70B6B4EC21ED836200625A0C /* Ray Tracing Project */,
+				70B6B4EB21ED836200625A0C /* Products */,
+				70D9FEDC21EDB8D50095ACBC /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		70B6B4EB21ED836200625A0C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				70B6B4EA21ED836200625A0C /* Ray Tracing Project */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		70B6B4EC21ED836200625A0C /* Ray Tracing Project */ = {
+			isa = PBXGroup;
+			children = (
+				703C627521EECC1C00C09840 /* Headers */,
+				703C627421EECC1400C09840 /* Source */,
+				703C627621EECC3200C09840 /* Objects */,
+				703C627321EECBCF00C09840 /* Inputs */,
+				703C627221EECBA400C09840 /* Images */,
+				703C626D21EE85E600C09840 /* output.png */,
+				703C626E21EEA7B600C09840 /* diff.png */,
+				70B6B52C21ED83A500625A0C /* SConstruct */,
+				70B6B4FE21ED83A000625A0C /* grading-script.py */,
 				70B6B50021ED83A100625A0C /* CMakeLists.txt */,
 				70B6B55921ED83AB00625A0C /* grading-scheme.txt */,
 			);
