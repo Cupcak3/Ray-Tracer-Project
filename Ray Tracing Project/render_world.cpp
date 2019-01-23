@@ -73,7 +73,8 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
 	}
 	else
 	{
-		color = {0,0,0}; // Background is black
+		vec3 dummy = {0,0,0};
+		color = this->background_shader->Shade_Surface(ray, dummy, dummy, recursion_depth); //Background is whatever the shader says
 	}
     return color;
 }
