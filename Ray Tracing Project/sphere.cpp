@@ -24,6 +24,7 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
 	// Determine which is first in ray starting from endpoint
 	t = ((ray.Point(t_1)-ray.endpoint).magnitude() < (ray.Point(t_2)-ray.endpoint).magnitude()) && (t_1 > small_t) ? t_1 : t_2;
 	
+	
 	return {this, t, -1}; //-1 MAY HAVE TO CHANGE LATER
 }
 
