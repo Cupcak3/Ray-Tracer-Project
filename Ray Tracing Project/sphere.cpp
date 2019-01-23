@@ -31,10 +31,8 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
 vec3 Sphere::Normal(const vec3& point, int part) const
 {
 	vec3 normal;
-	TODO; // compute the normal direction
-	vec3 top = {2*point[0],2*point[1], 2*point[2]};
-	double bottom = top.magnitude();
-	normal = top/bottom;
+	// TODO; // compute the normal direction
+	normal = {(point[0]-center[0])/radius, (point[1]-center[1])/radius, (point[2]-center[2])/radius};
 	return normal;
 }
 

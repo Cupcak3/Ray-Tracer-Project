@@ -39,7 +39,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		703C626D21EE85E600C09840 /* output.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = output.png; sourceTree = "<group>"; };
 		703C626E21EEA7B600C09840 /* diff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diff.png; sourceTree = "<group>"; };
 		70B6B4EA21ED836200625A0C /* Ray Tracing Project */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Ray Tracing Project"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70B6B4F421ED83A000625A0C /* 10.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 10.txt; sourceTree = "<group>"; };
@@ -144,6 +143,7 @@
 		70B6B55721ED83AB00625A0C /* object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = object.h; sourceTree = "<group>"; };
 		70B6B55821ED83AB00625A0C /* hierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hierarchy.h; sourceTree = "<group>"; };
 		70B6B55921ED83AB00625A0C /* grading-scheme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "grading-scheme.txt"; sourceTree = "<group>"; };
+		70BDC22F21F8FC58003ACFC4 /* output.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = output.png; sourceTree = "<group>"; };
 		70D9FEDD21EDB8D50095ACBC /* libpng12.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libpng12.framework; path = ../../../../../../Library/Frameworks/libpng12.framework; sourceTree = "<group>"; };
 		70D9FEDF21EDB8EB0095ACBC /* libpng.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libpng.framework; path = ../../../../../../Library/Frameworks/libpng.framework; sourceTree = "<group>"; };
 		70D9FEE121EDB8F90095ACBC /* libpng14.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libpng14.framework; path = ../../../../../../Library/Frameworks/libpng14.framework; sourceTree = "<group>"; };
@@ -325,7 +325,7 @@
 				703C627621EECC3200C09840 /* Objects */,
 				703C627321EECBCF00C09840 /* Inputs */,
 				703C627221EECBA400C09840 /* Images */,
-				703C626D21EE85E600C09840 /* output.png */,
+				70BDC22F21F8FC58003ACFC4 /* output.png */,
 				703C626E21EEA7B600C09840 /* diff.png */,
 				70B6B52C21ED83A500625A0C /* SConstruct */,
 				70B6B4FE21ED83A000625A0C /* grading-script.py */,
