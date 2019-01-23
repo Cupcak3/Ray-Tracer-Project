@@ -32,6 +32,9 @@ vec3 Sphere::Normal(const vec3& point, int part) const
 {
 	vec3 normal;
 	TODO; // compute the normal direction
+	vec3 top = {2*point[0],2*point[1], 2*point[2]};
+	double bottom = top.magnitude();
+	normal = top/bottom;
 	return normal;
 }
 
