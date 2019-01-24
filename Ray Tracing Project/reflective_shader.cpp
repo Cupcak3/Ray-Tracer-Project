@@ -14,6 +14,6 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
 	// color = (1-k) * color + k * cast_ray(reflected ray)
 	// k = reflectivity
 	
-	color = (1-reflectivity) * color + reflectivity * world.Cast_Ray(reflection, recursion_depth);
+	//color = (1-reflectivity) * color + reflectivity * world.Cast_Ray(reflection, --recursion_depth);
     return color;
 }
