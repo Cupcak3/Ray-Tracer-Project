@@ -28,7 +28,7 @@ Hit Render_World::Closest_Intersection(const Ray& ray)
 	for (Object* object: objects)
 	{
 		Hit hit = object->Intersection(ray, -1);  // Not sure what the part attribute/argument is for yet but I assume -1 is ok for now as per documentation. Probably changes later
-		if (hit.dist < min_t && hit.dist >= small_t && hit.object != NULL)
+		if (hit.dist < min_t && hit.dist >= small_t)
 		{
 			min_t = hit.dist;  // Update min_t. Ensures closest object to camera is registered.
 			closest_hit = hit; // Register the new closest object intersection

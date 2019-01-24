@@ -32,7 +32,7 @@ vec3 Sphere::Normal(const vec3& point, int part) const
 {
 	vec3 normal;
 	// TODO; // compute the normal direction
-	normal = {(point[0]-center[0])/radius, (point[1]-center[1])/radius, (point[2]-center[2])/radius};
+	normal = (point-center)/((point-center).magnitude());
 	return normal;
 }
 
