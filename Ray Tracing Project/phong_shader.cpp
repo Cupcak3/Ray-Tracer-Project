@@ -10,7 +10,7 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
 {
 	vec3 color;
 	
-	//TODO; //determine the color
+	// TODO; //determine the color
 	// color = R_a * L_a + R_d * L_d * max(dot(normal, lightvec), 0) + R_s * L_s * max(dot(v, reflection)^a;
 	// R_<type>   = color_<type>; L = light->emitted_light(Point_to_Light);
 	// lightvec   = light to point/intersection ray; v = point/intersection to viewer direction
@@ -33,12 +33,6 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
 		}
 		else
 		{
-			/*
-			 for each light
-			 compute shadow ray
-			 if ( ! shadow ray hits an object )
-			 add light’s diffuse and specular components
-			 */
 			Ray shadow_ray;
 			shadow_ray.endpoint = intersection_point;
 			shadow_ray.direction = Intersection_To_Light.normalized();
@@ -47,9 +41,6 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
 			if (!(hit.object && hit.dist < Intersection_To_Light.magnitude())) {
 				diffuse_intensity +=  color_diffuse  * Light_Produced * fmax(dot(normal, Intersection_To_Light.normalized()), 0.0);
 				specular_intensity += color_specular * Light_Produced * pow(fmax(dot(View_Ray, Reflected_Ray), 0.0), specular_power);
-			}
-			else{
-				
 			}
 		}
 	}
