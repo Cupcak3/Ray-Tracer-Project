@@ -58,11 +58,11 @@ Hit Mesh::Intersection(const Ray& ray, int part) const
 	}
 	else          //test all parts
 	{
-		for (int i = 0; i < triangles.size(); ++i)
+		for (unsigned i = 0; i < triangles.size(); ++i)
 		{
 			if (Intersect_Triangle(ray, i, t))
 			{
-				return {this, t, i};
+				return {this, t, (int) i};
 			}
 		}
 	}

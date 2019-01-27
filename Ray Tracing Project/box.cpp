@@ -37,9 +37,9 @@ void Box::Include_Point(const vec3& pt)
 	
 	bool good_x, good_y, good_z;
 	
-	good_x = !(lo[0] <= pt[0] <= hi[0]);
-	good_y = !(lo[1] <= pt[1] <= hi[1]);
-	good_z = !(lo[2] <= pt[2] <= hi[2]);
+	good_x = (lo[0] <= pt[0] && pt[0] <= hi[0]);
+	good_y = (lo[1] <= pt[1] && pt[1] <= hi[1]);
+	good_z = (lo[2] <= pt[2] && pt[2] <= hi[2]);
 	
 	if (!(good_x && good_y && good_z))
 	{
