@@ -1,4 +1,5 @@
 #include "mesh.h"
+#include "plane.h"
 #include <fstream>
 #include <string>
 #include <limits>
