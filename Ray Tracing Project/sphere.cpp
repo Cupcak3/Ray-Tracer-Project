@@ -16,8 +16,9 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
 	float c = dot(ray_to_sphere_center, ray_to_sphere_center) - pow(radius, 2.0);
 	
 	float t;
-	if (pow(b, 2.0)- 4 * a * c <= 0) {
-		return {0,0,0}; // No intersection
+	if (pow(b, 2.0)- 4 * a * c <= 0)
+	{
+		return {NULL,0,0}; // No intersection
 	}
 	float t_1 = (-b + sqrt(pow(b, 2.0) - 4 * a * c)) / (2.0 * a);
 	float t_2 = (-b - sqrt(pow(b, 2.0) - 4 * a * c)) / (2.0 * a);

@@ -17,13 +17,12 @@ Hit Plane::Intersection(const Ray& ray, int part) const
 	if (denominator != 0)
 	{
 		float t = dot(this->x1-ray.endpoint, this->normal) / denominator;
-		if (t > small_t) {
-		return {this, t, -1}; //-1 MAY HAVE TO CHANGE LATER
+		if (t > small_t)
+		{
+			return {this, t, -1}; //-1 MAY HAVE TO CHANGE LATER
 		}
 	}
-
-	
-    return {0,0,0}; // No intersection
+    return {NULL,0,0}; // No intersection
 }
 
 vec3 Plane::Normal(const vec3& point, int part) const

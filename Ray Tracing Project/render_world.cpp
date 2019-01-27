@@ -34,7 +34,8 @@ Hit Render_World::Closest_Intersection(const Ray& ray)
 			closest_hit = hit; // Register the new closest object intersection
 		}
 	}
-	if (debug_pixel) {
+	if (debug_pixel)
+	{
 		std::cout<<"intersection with: obj = "<<&closest_hit.object<<"; part = "<<closest_hit.part<<"; dist = "<<closest_hit.dist<<std::endl;
 	}
     return closest_hit;
@@ -72,7 +73,7 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
 	Hit hit = Closest_Intersection(ray);
 	if (hit.object && recursion_depth <= recursion_depth_limit) // checks against NULL. if there is an intersection hit.object is non-NULL
 	{
-		color = hit.object->material_shader->Shade_Surface(ray, ray.Point(hit.dist), hit.object->Normal(ray.Point(hit.dist), -1), recursion_depth); // Shade the object
+		color = hit.object->material_shader->Shade_Surface(ray, ray.Point(hit.dist), hit.object->Normal(ray.Point(hit.dist), hit.part), recursion_depth); // Shade the object
 	}
 	else
 	{
@@ -80,7 +81,8 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
 		color = this->background_shader->Shade_Surface(ray, dummy, dummy, recursion_depth); //Background is whatever the shader says
 	}
 	
-	if(debug_pixel) {
+	if(debug_pixel)
+	{
 		std::cout<<"cast ray: end = "<<ray.endpoint<<"; dir = "<<ray.direction<<std::endl;
 	}
 	

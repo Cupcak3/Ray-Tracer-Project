@@ -16,7 +16,7 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
 	// lightvec   = light to point/intersection ray; v = point/intersection to viewer direction
 	// reflection = Light reflection direction
 	
-	vec3 ambient_intensity, diffuse_intensity, specular_intensity = {0,0,0};
+	vec3 ambient_intensity, diffuse_intensity, specular_intensity;
 	
 	ambient_intensity = color_ambient * world.ambient_color * world.ambient_intensity;
 	
@@ -39,7 +39,8 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
 			shadow_ray.direction = Intersection_To_Light.normalized();
 			Hit hit = {NULL, 0,0};
 			hit = world.Closest_Intersection(shadow_ray);
-			if (!(hit.object && hit.dist < Intersection_To_Light.magnitude())) {
+			if (!(hit.object && hit.dist < Intersection_To_Light.magnitude()))
+			{
 				diffuse_intensity +=  color_diffuse  * Light_Produced * fmax(dot(normal, Intersection_To_Light.normalized()), 0.0);
 				specular_intensity += color_specular * Light_Produced * pow(fmax(dot(View_Ray, Reflected_Ray), 0.0), specular_power);
 			}

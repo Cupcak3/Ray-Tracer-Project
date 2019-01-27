@@ -19,7 +19,10 @@ public:
 
     virtual Hit Intersection(const Ray& ray, int part) const override;
     virtual vec3 Normal(const vec3& point, int part) const override;
-    bool Intersect_Triangle(const Ray& ray, int tri, double& dist) const;
+	
+	double extracted(const vec3 &A, const vec3 &B, const vec3 &C) const;
+	
+	bool Intersect_Triangle(const Ray& ray, int tri, double& dist) const;
     void Read_Obj(const char* file);
     Box Bounding_Box(int part) const override;
 };

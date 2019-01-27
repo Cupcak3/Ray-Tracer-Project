@@ -42,16 +42,47 @@ void Mesh::Read_Obj(const char* file)
 // Check for an intersection against the ray.  See the base class for details.
 Hit Mesh::Intersection(const Ray& ray, int part) const
 {
-    TODO;
-    return {};
+    //TODO;
+	//if intersect triangles[part]
+	//	calculate
+	//  return
+	double t;
+	
+	if (part >= 0) //test only that part
+	{
+		if (Intersect_Triangle(ray, part, t))
+		{
+			return {this, t, part};
+		}
+	}
+	else          //test all parts
+	{
+		for (int i = 0; i < triangles.size(); ++i)
+		{
+			if (Intersect_Triangle(ray, i, t))
+			{
+				return {this, t, i};
+			}
+		}
+	}
+	
+    return {NULL,0,0};
 }
 
 // Compute the normal direction for the triangle with index part.
 vec3 Mesh::Normal(const vec3& point, int part) const
 {
     assert(part>=0);
-    TODO;
-    return vec3();
+    //TODO;
+	vec3 v1 = vertices[triangles[part][1]] - point;
+	vec3 v2 = vertices[triangles[part][2]] - point;
+	
+    return cross(v1, v2);
+}
+
+static double Calc_Area(const vec3 &A, const vec3 &B, const vec3 &C)
+{
+	return abs((A[0] * (B[1]-C[1]) + B[0] * (C[1] - A[1]) + C[0] * (A[1] - B[1]))/(2));
 }
 
 // This is a helper routine whose purpose is to simplify the implementation
@@ -68,7 +99,40 @@ vec3 Mesh::Normal(const vec3& point, int part) const
 // two triangles.
 bool Mesh::Intersect_Triangle(const Ray& ray, int tri, double& dist) const
 {
-    TODO;
+    //TODO;
+	vec3 A = vertices[triangles[tri][0]];
+	vec3 B = vertices[triangles[tri][1]];
+	vec3 C = vertices[triangles[tri][2]];
+	
+	vec3 normal = Mesh::Normal(A, tri);
+	
+	Plane plane = Plane(A, normal);
+	Hit hit = {NULL,0,0};
+	hit = plane.Intersection(ray, -1);
+	if (hit.object && hit.dist > small_t)
+	{
+		// intersects triangle's plane
+		
+		vec3 P = ray.Point(hit.dist);
+		
+		double Triangle_Area = Calc_Area(A, B, C);
+		double alpha, beta, gamma, A_a, A_b, A_c;
+		
+		A_a = Calc_Area(P, B, C);
+		A_b = Calc_Area(P, A, C);
+		A_c = Calc_Area(P, A, B);
+		
+		alpha = A_a / Triangle_Area;
+		beta  = A_b / Triangle_Area;
+		gamma = A_c / Triangle_Area;
+		
+		if ((alpha + beta + gamma) == 1 && (alpha > -weight_tol) && (beta > -weight_tol) && (gamma > -weight_tol))
+		{
+			dist = hit.dist;
+			return true;
+		}
+		
+	}
     return false;
 }
 
