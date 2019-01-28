@@ -70,6 +70,12 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
     vec3 color;
 	// determine the color here;
 	//TODO;
+	
+	if(debug_pixel)
+	{
+		std::cout<<"cast ray: end = "<<ray.endpoint<<"; dir = "<<ray.direction<<std::endl;
+	}
+	
 	Hit hit = Closest_Intersection(ray);
 	if (hit.object && recursion_depth <= recursion_depth_limit) // checks against NULL. if there is an intersection hit.object is non-NULL
 	{
@@ -80,12 +86,7 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
 		vec3 dummy = {0,0,0};
 		color = this->background_shader->Shade_Surface(ray, dummy, dummy, recursion_depth); //Background is whatever the shader says
 	}
-	
-	if(debug_pixel)
-	{
-		std::cout<<"cast ray: end = "<<ray.endpoint<<"; dir = "<<ray.direction<<std::endl;
-	}
-	
+
     return color;
 }
 

@@ -75,10 +75,17 @@ vec3 Mesh::Normal(const vec3& point, int part) const
 {
     assert(part>=0);
     //TODO;
-	vec3 v1 = vertices[triangles[part][1]] - point;
-	vec3 v2 = vertices[triangles[part][2]] - point;
+	vec3 A = vertices[triangles[part][0]];
+	vec3 B = vertices[triangles[part][1]];
+	vec3 C = vertices[triangles[part][2]];
 	
-    return cross(v1, v2);
+	vec3 r1 = B-A;
+	vec3 r2 = C-A;
+	
+	vec3 n = cross(r1, r2);
+	vec3 normal = n / n.magnitude();
+	
+    return normal;
 }
 
 static double Calc_Area(const vec3 &A, const vec3 &B, const vec3 &C)
@@ -107,13 +114,16 @@ bool Mesh::Intersect_Triangle(const Ray& ray, int tri, double& dist) const
 	
 	vec3 normal = Mesh::Normal(A, tri);
 	
-	Plane plane = Plane(A, normal);
+	vec3 Triangle_Normal = Mesh::Normal(A, tri);
+	Plane plane = Plane(A, Triangle_Normal);
 	Hit hit = {NULL,0,0};
-	hit = plane.Intersection(ray, -1);
+	
+	hit = plane.Intersection(ray, -1); // Intersection of ray and triangle's plane
+	
 	if (hit.object && hit.dist > small_t)
 	{
 		// intersects triangle's plane
-		
+
 		vec3 P = ray.Point(hit.dist);
 		
 		double Triangle_Area = Calc_Area(A, B, C);

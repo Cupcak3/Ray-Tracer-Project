@@ -22,6 +22,8 @@ Box Box::Union(const Box& bb) const
 		box.lo[i] = std::min(this->lo[i], bb.lo[i]);
 		box.hi[i] = std::max(this->hi[i], bb.hi[i]);
 	} // Simple expansion by each coordinate, not sure if this is fool proof
+	// Actually this was given by componentwise_max and componentwise_min
+	// but I didn't know that at the time of writing the algorithm
 	
     return box;
 }

@@ -51,7 +51,7 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
 	
 	if(debug_pixel)
 	{
-		std::cout<<"call Shade_Surface with location = "<<intersection_point<<"; normal = "<<normal<<std::endl<<"ambient = "<<color_ambient<<std::endl;
+		std::cout<<"call Shade_Surface with location = "<<intersection_point<<"; normal = "<<normal<<std::endl<<"ambient = "<<ambient_intensity<<std::endl;
 		std::cout<<"shading for light: diffuse = "<<diffuse_intensity<<"; specular = "<<specular_intensity<<std::endl<<"final color "<<color<<std::endl;
 	}
 	

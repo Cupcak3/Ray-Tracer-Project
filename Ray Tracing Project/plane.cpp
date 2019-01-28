@@ -27,7 +27,7 @@ Hit Plane::Intersection(const Ray& ray, int part) const
 
 vec3 Plane::Normal(const vec3& point, int part) const
 {
-    return normal;
+	return normal;
 }
 
 // There is not a good answer for the bounding box of an infinite object.
