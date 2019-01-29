@@ -39,7 +39,7 @@ Shade_Surface(const Ray& ray,const vec3& intersection_point,
 			shadow_ray.direction = Intersection_To_Light.normalized();
 			Hit hit = {NULL, 0,0};
 			hit = world.Closest_Intersection(shadow_ray);
-			if (!(hit.object && hit.dist < Intersection_To_Light.magnitude()))
+			if (!(hit.object && hit.dist <= Intersection_To_Light.magnitude()))
 			{
 				diffuse_intensity +=  color_diffuse  * Light_Produced * fmax(dot(normal, Intersection_To_Light.normalized()), 0.0);
 				specular_intensity += color_specular * Light_Produced * pow(fmax(dot(View_Ray, Reflected_Ray), 0.0), specular_power);

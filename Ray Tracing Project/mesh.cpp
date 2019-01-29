@@ -112,8 +112,6 @@ bool Mesh::Intersect_Triangle(const Ray& ray, int tri, double& dist) const
 	vec3 B = vertices[triangles[tri][1]];
 	vec3 C = vertices[triangles[tri][2]];
 	
-	vec3 normal = Mesh::Normal(A, tri);
-	
 	vec3 Triangle_Normal = Mesh::Normal(A, tri);
 	Plane plane = Plane(A, Triangle_Normal);
 	Hit hit = {NULL,0,0};
@@ -137,7 +135,7 @@ bool Mesh::Intersect_Triangle(const Ray& ray, int tri, double& dist) const
 		beta  = A_b / Triangle_Area;
 		gamma = A_c / Triangle_Area;
 		
-		if ((alpha + beta + gamma) == 1 && (alpha > -weight_tol) && (beta > -weight_tol) && (gamma > -weight_tol))
+		if ((alpha + beta + gamma) == 1 && (alpha > -weight_tolerance) && (beta > -weight_tolerance) && (gamma > -weight_tolerance))
 		{
 			dist = hit.dist;
 			return true;
