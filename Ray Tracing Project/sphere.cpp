@@ -26,7 +26,7 @@ Hit Sphere::Intersection(const Ray& ray, int part) const
 	t = ((ray.Point(t_1)-ray.endpoint).magnitude() < (ray.Point(t_2)-ray.endpoint).magnitude()) && (t_1 > small_t) ? t_1 : t_2;
 	
 	
-	return {this, t, -1}; //-1 MAY HAVE TO CHANGE LATER
+	return {this, t, part}; //-1 MAY HAVE TO CHANGE LATER
 }
 
 vec3 Sphere::Normal(const vec3& point, int part) const

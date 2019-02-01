@@ -53,6 +53,10 @@ Hit Mesh::Intersection(const Ray& ray, int part) const
 	{
 		if (Intersect_Triangle(ray, part, t))
 		{
+			if (debug_pixel)
+			{
+				std::cout<<"intersection with obj = "<<this<<" part = "<<part<<"; dist = " <<t<<std::endl;
+			}
 			return {this, t, part};
 		}
 	}
@@ -62,6 +66,10 @@ Hit Mesh::Intersection(const Ray& ray, int part) const
 		{
 			if (Intersect_Triangle(ray, i, t))
 			{
+				if (debug_pixel)
+				{
+					std::cout<<"intersection with obj = "<<this<<" part = "<<(int)i<<"; dist = " <<t<<std::endl;
+				}
 				return {this, t, (int) i};
 			}
 		}
@@ -88,7 +96,7 @@ vec3 Mesh::Normal(const vec3& point, int part) const
     return normal;
 }
 
-static double Calc_Area(const vec3 &A, const vec3 &B, const vec3 &C)
+static float Calc_Area(const vec3 &A, const vec3 &B, const vec3 &C)
 {
 	return abs((A[0] * (B[1]-C[1]) + B[0] * (C[1] - A[1]) + C[0] * (A[1] - B[1]))/(2));
 }
@@ -116,26 +124,50 @@ bool Mesh::Intersect_Triangle(const Ray& ray, int tri, double& dist) const
 	Plane plane = Plane(A, Triangle_Normal);
 	Hit hit = {NULL,0,0};
 	
-	hit = plane.Intersection(ray, -1); // Intersection of ray and triangle's plane
+	hit = plane.Intersection(ray, tri); // Intersection of ray and triangle's plane
 	
-	if (hit.object && hit.dist > small_t)
+	if (hit.object)
 	{
 		// intersects triangle's plane
 
 		vec3 P = ray.Point(hit.dist);
 		
-		double Triangle_Area = Calc_Area(A, B, C);
-		double alpha, beta, gamma, A_a, A_b, A_c;
+		float Triangle_Area = Calc_Area(A, B, C);
+		float alpha = 0, beta = 0, gamma = 0, A_a = 0, A_b = 0, A_c = 0;
 		
 		A_a = Calc_Area(P, B, C);
 		A_b = Calc_Area(P, A, C);
 		A_c = Calc_Area(P, A, B);
 		
+		// barycentric weight calculations
 		alpha = A_a / Triangle_Area;
 		beta  = A_b / Triangle_Area;
 		gamma = A_c / Triangle_Area;
 		
-		if ((alpha + beta + gamma) == 1 && (alpha > -weight_tolerance) && (beta > -weight_tolerance) && (gamma > -weight_tolerance))
+		if (debug_pixel)
+		{
+			if ((float)(alpha+beta+gamma)==(float)1.0) {
+				std::cout<<"Sum test passed"<<std::endl;
+			}
+			else
+			{
+				std::cout<<"Sum test failed with sum = "<<(float)(alpha+beta+gamma)<<std::endl;
+			}
+			if ((alpha > -weight_tolerance) && (beta > -weight_tolerance) && (gamma > -weight_tolerance)) {
+				std::cout<<"Weight test passed"<<std::endl;
+			}else
+			{
+				std::cout<<"weight test failed with weights "<<alpha<< ", "<<beta<<", "<<gamma<<std::endl;
+			}
+			if (hit.dist>small_t) {
+				std::cout<<"small_t test passesd"<<std::endl;
+			}else
+			{
+				std::cout<<"small_t test failed with dist = "<<hit.dist<<std::endl;
+			}
+		}
+		
+		if ((float)(alpha + beta + gamma) == (float)1.0 && (alpha > -weight_tolerance) && (beta > -weight_tolerance) && (gamma > -weight_tolerance) && hit.dist > small_t)
 		{
 			dist = hit.dist;
 			return true;
