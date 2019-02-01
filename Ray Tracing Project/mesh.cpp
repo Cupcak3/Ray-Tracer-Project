@@ -96,9 +96,12 @@ vec3 Mesh::Normal(const vec3& point, int part) const
     return normal;
 }
 
-static float Calc_Area(const vec3 &A, const vec3 &B, const vec3 &C)
+bool inside_outside(const vec3& A, const vec3& B, const vec3& C, const vec3& P, const vec3& normal)
 {
-	return abs((A[0] * (B[1]-C[1]) + B[0] * (C[1] - A[1]) + C[0] * (A[1] - B[1]))/(2));
+	bool t1 = dot((cross(B-A, P-A)), normal) >= 0;
+	bool t2 = dot((cross(C-B, P-B)), normal) >= 0;
+	bool t3 = dot((cross(A-C, P-C)), normal) >= 0;
+	return t1 && t2 && t3;
 }
 
 // This is a helper routine whose purpose is to simplify the implementation
@@ -132,26 +135,23 @@ bool Mesh::Intersect_Triangle(const Ray& ray, int tri, double& dist) const
 
 		vec3 P = ray.Point(hit.dist);
 		
-		float Triangle_Area = Calc_Area(A, B, C);
-		float alpha = 0, beta = 0, gamma = 0, A_a = 0, A_b = 0, A_c = 0;
+		float alpha = 0, beta = 0, gamma = 0;
+		bool inside_triangle = inside_outside(A, B, C, P, Triangle_Normal);
 		
-		A_a = Calc_Area(P, B, C);
-		A_b = Calc_Area(P, A, C);
-		A_c = Calc_Area(P, A, B);
 		
 		// barycentric weight calculations
-		alpha = A_a / Triangle_Area;
-		beta  = A_b / Triangle_Area;
-		gamma = A_c / Triangle_Area;
+		alpha = dot(cross(C-B, P-B),Triangle_Normal)/dot(cross(B-A, C-A), Triangle_Normal);
+		beta = dot(cross(A-C, P-C), Triangle_Normal)/dot(cross(B-A, C-A), Triangle_Normal);
+		gamma = dot(cross(B-A, P-A), Triangle_Normal)/dot(cross(B-A, C-A), Triangle_Normal);
 		
 		if (debug_pixel)
 		{
-			if ((float)(alpha+beta+gamma)==(float)1.0) {
-				std::cout<<"Sum test passed"<<std::endl;
+			if (!inside_triangle) {
+				std::cout<<"Inside triangle test passed"<<std::endl;
 			}
 			else
 			{
-				std::cout<<"Sum test failed with sum = "<<(float)(alpha+beta+gamma)<<std::endl;
+				std::cout<<"Inside triangle test failed"<<std::endl;
 			}
 			if ((alpha > -weight_tolerance) && (beta > -weight_tolerance) && (gamma > -weight_tolerance)) {
 				std::cout<<"Weight test passed"<<std::endl;
@@ -167,7 +167,7 @@ bool Mesh::Intersect_Triangle(const Ray& ray, int tri, double& dist) const
 			}
 		}
 		
-		if ((float)(alpha + beta + gamma) == (float)1.0 && (alpha > -weight_tolerance) && (beta > -weight_tolerance) && (gamma > -weight_tolerance) && hit.dist > small_t)
+		if ((inside_triangle) && (alpha > -weight_tolerance) && (beta > -weight_tolerance) && (gamma > -weight_tolerance) && hit.dist > small_t)
 		{
 			dist = hit.dist;
 			return true;
