@@ -19,7 +19,7 @@ Hit Plane::Intersection(const Ray& ray, int part) const
 		float t = dot(this->x1-ray.endpoint, this->normal) / denominator;
 		if (t > small_t)
 		{
-			return {this, t, part}; //-1 MAY HAVE TO CHANGE LATER
+			return {this, t, part};
 		}
 	}
     return {NULL,0,0}; // No intersection

@@ -146,14 +146,16 @@ bool Mesh::Intersect_Triangle(const Ray& ray, int tri, double& dist) const
 		
 		if (debug_pixel)
 		{
-			if (!inside_triangle) {
+			if (!inside_triangle)
+			{
 				std::cout<<"Inside triangle test passed"<<std::endl;
 			}
 			else
 			{
 				std::cout<<"Inside triangle test failed"<<std::endl;
 			}
-			if ((alpha > -weight_tolerance) && (beta > -weight_tolerance) && (gamma > -weight_tolerance)) {
+			if ((alpha > -weight_tolerance) && (beta > -weight_tolerance) && (gamma > -weight_tolerance))
+			{
 				std::cout<<"Weight test passed"<<std::endl;
 			}else
 			{
@@ -172,7 +174,6 @@ bool Mesh::Intersect_Triangle(const Ray& ray, int tri, double& dist) const
 			dist = hit.dist;
 			return true;
 		}
-		
 	}
     return false;
 }
@@ -182,6 +183,10 @@ bool Mesh::Intersect_Triangle(const Ray& ray, int tri, double& dist) const
 Box Mesh::Bounding_Box(int part) const
 {
     Box b;
-    TODO;
+    // TODO;
+	for (int i = 0; i < 3; ++i)
+	{
+		b.Include_Point(vertices[triangles[part][i]]);
+	}
     return b;
 }

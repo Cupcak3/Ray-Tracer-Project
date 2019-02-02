@@ -7,18 +7,32 @@ void Hierarchy::Reorder_Entries()
 {
     if(!entries.size()) return;
     TODO;
+	for (Entry entry : entries)
+	{
+		
+	}
+	//std::cout<<"Reordered entires"<<std::endl;
 }
 
 // Populate tree from entries.
 void Hierarchy::Build_Tree()
 {
     if(!entries.size()) return;
-    TODO;
+	// TODO;
+	for (int i = 0; i < entries.size(); ++i)
+	{
+		tree.push_back(entries[i].box);
+	}
+	//std::cout<<"Built tree"<<std::endl;
 }
 
 // Return a list of candidates (indices into the entries list) whose
 // bounding boxes intersect the ray.
 void Hierarchy::Intersection_Candidates(const Ray& ray, std::vector<int>& candidates) const
 {
-    TODO;
+    // TODO;
+	for(int i = 0; i < entries.size(); ++i)
+	{
+		if (entries[i].box.Intersection(ray)) candidates.push_back(i);
+	}
 }

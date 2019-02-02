@@ -4,7 +4,32 @@
 // Return whether the ray intersects this box.
 bool Box::Intersection(const Ray& ray) const
 {
-    TODO;
+    //TODO;
+	double tmin = -std::numeric_limits<double>::infinity();
+	double tmax = -tmin;
+	
+	for (int i = 0; i < 3; ++i)
+	{
+		if ((ray.direction[i]) == 0 && (ray.endpoint[i] < std::min(lo[i], hi[i])) && (ray.endpoint[i] > std::max(lo[i], hi[i])))
+		{
+			return false;
+		}
+		else
+		{
+			double tmin_temp = (std::min(lo[i],hi[i])-ray.endpoint[i]) / ray.direction[i];
+			double tmax_temp = (std::max(lo[i],hi[i])-ray.endpoint[i]) / ray.direction[i];
+			
+			if (tmin_temp > tmax_temp) std::swap(tmin_temp, tmax_temp);
+			
+			tmin = std::min(tmin, tmin_temp);
+			tmax = std::max(tmax, tmax_temp);
+			
+			if (tmin > tmax || tmax < 0) {
+				return false;
+			}
+		}
+	}
+	
     return true;
 }
 
@@ -15,7 +40,6 @@ Box Box::Union(const Box& bb) const
     Box box;
 	box.lo = this->lo;
 	box.hi = this->hi;
-	
 	
 	for (int i = 0; i < 3; ++i)
 	{

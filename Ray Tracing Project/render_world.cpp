@@ -25,13 +25,24 @@ Hit Render_World::Closest_Intersection(const Ray& ray)
 	// TODO; I'm going to leave these in and commented so that I can easily tell which functions I edit
 	float min_t = std::numeric_limits<float>::max();
 	Hit closest_hit = {NULL,0,0}; // I think this is what object.h is requiring. Initialized null so that only intersections are recorded
-	for (Object* object: objects)
+	/*for (Object* object: objects)
 	{
 		Hit hit = object->Intersection(ray, -1);  // Not sure what the part attribute/argument is for yet but I assume -1 is ok for now as per documentation. Probably changes later
 		if (hit.object && hit.dist < min_t && hit.dist >= small_t)
 		{
 			min_t = hit.dist;  // Update min_t. Ensures closest object to camera is registered.
 			closest_hit = hit; // Register the new closest object intersection
+		}
+	}*/
+	std::vector<int> candidates;
+	hierarchy.Intersection_Candidates(ray, candidates);
+	for (int i : candidates)
+	{
+		Hit hit = hierarchy.entries.at(i).obj->Intersection(ray, hierarchy.entries.at(i).part);
+		if (hit.object && hit.dist < min_t && hit.dist >= small_t)
+		{
+			min_t = hit.dist;
+			closest_hit = hit;
 		}
 	}
 	if (debug_pixel)
@@ -92,9 +103,17 @@ vec3 Render_World::Cast_Ray(const Ray& ray,int recursion_depth)
 
 void Render_World::Initialize_Hierarchy()
 {
-    TODO;
+    // TODO;
 	// Fill in hierarchy.entries; there should be one entry for
     // each part of each object.
+	for (Object* object : objects)
+	{
+		for (int part = 0; part < object->number_parts; ++part)
+		{
+			Entry entry = {object, part, object->Bounding_Box(part)};
+			hierarchy.entries.push_back(entry);
+		}
+	}
 
     hierarchy.Reorder_Entries();
     hierarchy.Build_Tree();
