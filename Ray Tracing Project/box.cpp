@@ -5,26 +5,32 @@
 bool Box::Intersection(const Ray& ray) const
 {
     //TODO;
+	//std::cout<<"Testing box w/bounds "<<this->lo<<" and "<<this->hi<<std::endl;
+	//std::cout<<"Ray "<<ray.endpoint<<" " <<ray.direction<<std::endl;
 	double tmin = -std::numeric_limits<double>::infinity();
 	double tmax = -tmin;
 	
 	for (int i = 0; i < 3; ++i)
 	{
-		if ((ray.direction[i]) == 0 && (ray.endpoint[i] < std::min(lo[i], hi[i])) && (ray.endpoint[i] > std::max(lo[i], hi[i])))
+		if ((ray.direction[i]) == 0)
 		{
+			if (ray.endpoint[i] < lo[i] && ray.endpoint[i] > hi[i])
+			{
 			return false;
+			}
 		}
 		else
 		{
-			double tmin_temp = (std::min(lo[i],hi[i])-ray.endpoint[i]) / ray.direction[i];
-			double tmax_temp = (std::max(lo[i],hi[i])-ray.endpoint[i]) / ray.direction[i];
+			double tmin_temp = (lo[i] - ray.endpoint[i]) / ray.direction[i];
+			double tmax_temp = (hi[i] - ray.endpoint[i]) / ray.direction[i];
 			
 			if (tmin_temp > tmax_temp) std::swap(tmin_temp, tmax_temp);
 			
-			tmin = std::min(tmin, tmin_temp);
-			tmax = std::max(tmax, tmax_temp);
+			tmin = std::max(tmin, tmin_temp);
+			tmax = std::min(tmax, tmax_temp);
 			
-			if (tmin > tmax || tmax < 0) {
+			if (tmin > tmax || tmax < 0)
+			{
 				return false;
 			}
 		}

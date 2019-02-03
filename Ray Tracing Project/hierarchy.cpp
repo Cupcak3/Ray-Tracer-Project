@@ -31,8 +31,10 @@ void Hierarchy::Build_Tree()
 void Hierarchy::Intersection_Candidates(const Ray& ray, std::vector<int>& candidates) const
 {
     // TODO;
+	candidates.clear();
 	for(int i = 0; i < entries.size(); ++i)
 	{
 		if (entries[i].box.Intersection(ray)) candidates.push_back(i);
+		
 	}
 }
